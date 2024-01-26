@@ -18,11 +18,11 @@ const connectDb = async () => {
 };
 connectDb();
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to todo-backend!' });
-});
+app.use('/api', todoRoutes);
 
-app.use('/', todoRoutes);
+app.use(function(req, res){
+  res.send(404);
+});
 
 const port = process.env.PORT || 3333;
 const server = app.listen(port, () => {

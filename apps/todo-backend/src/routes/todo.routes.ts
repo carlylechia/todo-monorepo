@@ -3,6 +3,10 @@ import { TodoModel } from '../models/todo.model';
 
 const router = Router();
 
+router.get('/', async (req: Request, res: Response) => {
+    res.redirect('/api/todos')
+})
+
 router.get('/todos', async (req: Request, res: Response) => {
   try {
     const todos = await TodoModel.find();
