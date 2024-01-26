@@ -1,14 +1,21 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import mongoose from 'mongoose';
 import express from 'express';
 import * as path from 'path';
 
 const app = express();
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+const connectDb = async () => {
+  try {
+    await mongoose.connect(process.env.DATABASE_URL || 'mongodb://localhost/todo_app', {})
+    console.log("CONNECTED TO DATABASE SUCCESSFULLY!");
+  } catch (error: any) {
+    console.error('COULD NOT CONNECT TO DATABASE:', error.message);
+  }
+};
+connectDb();
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to todo-backend!' });
