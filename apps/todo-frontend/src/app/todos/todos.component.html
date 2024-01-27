@@ -49,10 +49,10 @@
             </div>
         
         
-            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
                 <div style="max-width: max-content;"><input type="date" class="form-control" placeholder="Due Date"></div>
-                <div style="display: flex; max-width: 100%; justify-content: space-around; flex-wrap: wrap;">
-                    <div><input type="text" placeholder="Enter Comma Seperated tags" class="form-control"></div>
+                <div style="display: flex; max-width: 100%; justify-content: space-around;">
+                    <div style="min-width: 25vw;"><input type="text" placeholder="Enter Comma Seperated tags" class="form-control"></div>
                     <button class="btn btn-success">Add Task</button>
                 </div>
             
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col" style="display: flex; gap: 5px; max-width: 100%; flex-wrap: wrap;">
+            <div class="col" style="display: flex; gap: 5px; max-width: 100%;">
                 <button class="btn btn-secondary  btn-sm">Tags Group</button>
                 <button class="btn btn-secondary  btn-sm">default</button>
                 <button class="btn btn-secondary  btn-sm">Hobby </button>
@@ -94,16 +94,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <div class="todo-list">
-                        <div *ngFor="let todo of todos" class="todo-item" (click)="showTodoDetails(todo)">
-                        <input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodoStatus(todo)">
-                        <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span>
-                        <button (click)="todo._id && deleteTodo(todo._id)">Delete</button>
-                        </div>
-                    </div>
-  
-  
-                        <!-- <tr>
+                        <tr>
                             <td style="text-align: center;">1</td>
                             <td>
                                 <div class="row">
@@ -213,13 +204,12 @@
                                 <button class="btn btn-success btn-sm rounded-btn">default</button>
                             </td>
                         </tr>
-                    </tbody> -->
+                    </tbody>
                 </table>
             </div>
 
         </div>
     </div>
-    <!-- <app-todo-details [todo]="selectedTodo"></app-todo-details> -->
 </body>
 
 </html>
