@@ -1,15 +1,17 @@
 import { Document, Schema, model } from 'mongoose';
-interface Todo extends Document {
+export interface Todo extends Document {
   title: string;
   description: string;
-  created_at: Date;
-  updated_at: Date;
+  completed?: boolean;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 const todoSchema = new Schema<Todo>(
   {
     title: { type: String, required: true, maxlength: 255 },
     description: { type: String, required: true },
+    completed: { type: Boolean, default: false },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
   },

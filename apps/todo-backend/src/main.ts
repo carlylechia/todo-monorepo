@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from 'mongoose';
 import express from 'express';
+import cors from 'cors';
 import * as path from 'path';
 import todoRoutes from './routes/todo.routes';
 
-const app = express();
 
+const app = express();
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 const connectDb = async () => {
