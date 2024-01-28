@@ -67,10 +67,7 @@
         </div>
         <div class="row pt-4">
             <div class="col" style="display: flex; gap: 5px; max-width: 100%; flex-wrap: wrap;">
-                <button class="btn btn-secondary  btn-sm">Tags Group</button>
-                <button class="btn btn-secondary  btn-sm">default</button>
                 <button class="btn btn-secondary  btn-sm">Hobby </button>
-                <button class="btn btn-success  btn-sm">Holiday</button>
                 <button class="btn btn-success text-light  btn-sm">Financial </button>
                 <button class="btn btn-secondary  btn-sm">Fun </button>
                 <button class="btn btn-success  btn-sm">Emergency </button>
@@ -89,137 +86,41 @@
                         <tr>
                             <th><strong>Index</strong></th>
                             <th><strong>Task Name</strong></th>
-                            <th><strong>Due Date</strong></th>
-                            <th class="text-center"><strong>Tags</strong></th>
+                            <th class="text-center"><strong>Actions</strong></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <div class="todo-list">
-                        <div *ngFor="let todo of todos" class="todo-item" (click)="showTodoDetails(todo)">
-                            <tr>
-                                <td>1</td>
-                        <td><input type="checkbox" [(ngModel)]="todo.completed" (change)="updateTodoStatus(todo)">
+                        <tr *ngFor="let todo of todos" class="todo-item" (click)="showTodoDetails(todo)">
+                                <td>{{todos.indexOf(todo)}}</td>
+                        <td><input type="checkbox" [(ngModel)]="todo.completed" name='completed' (change)="updateTodoStatus(todo)" style="margin-right: 13px;">
                         <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span></td>
-                        <td><button (click)="todo._id && deleteTodo(todo._id)">Delete</button></td>
-                    </tr>
-                        </div>
-                    </div>
+                        <td style="display: flex; gap: 3px;">
+                            <button class="btn btn-primary" (click)="openEditModal(todo)">Edit</button>
+                            <button class="btn btn-danger" (click)="todo._id && deleteTodo(todo._id)">Delete</button>
+                        </td>
+                        </tr>
   
-  
-                        <!-- <tr>
-                            <td style="text-align: center;">1</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="checkbox">
-                                    </div>
-                                    <div class="col-6">
-                                        Daily Exterise Routine
-                                    </div>
-                                    <div class="col-4 text-end ">
-                                        <i class="fa fa-close text-secondary px-3 text-danger "></i>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>27/01/2024</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm rounded-btn">Health</button>
-                                <button class="btn btn-secondary btn-sm rounded-btn">fitness</button>
-                                <button class="btn btn-success btn-sm rounded-btn">default</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">2</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="checkbox">
-                                    </div>
-                                    <div class="col-6">
-                                        Daily Exterise Routine
-                                    </div>
-                                    <div class="col-4 text-end ">
-                                        <i class="fa fa-close text-secondary px-3 text-danger "></i>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>12/05/2024</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm rounded-btn">Health</button>
-                                <button class="btn btn-secondary btn-sm rounded-btn">fitness</button>
-                                <button class="btn btn-success btn-sm rounded-btn">default</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">3</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="checkbox">
-                                    </div>
-                                    <div class="col-6">
-                                        Daily Exterise Routine
-                                    </div>
-                                    <div class="col-4 text-end ">
-                                        <i class="fa fa-close text-secondary px-3 text-danger "></i>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>12/05/2024</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm rounded-btn">Health</button>
-                                <button class="btn btn-secondary btn-sm rounded-btn">fitness</button>
-                                <button class="btn btn-success btn-sm rounded-btn">default</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">4</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="checkbox">
-                                    </div>
-                                    <div class="col-6">
-                                        Daily Exterise Routine
-                                    </div>
-                                    <div class="col-4 text-end ">
-                                        <i class="fa fa-close text-secondary px-3 text-danger "></i>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>12/05/2024</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm rounded-btn">Health</button>
-                                <button class="btn btn-secondary btn-sm rounded-btn">fitness</button>
-                                <button class="btn btn-success btn-sm rounded-btn">default</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">5</td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="checkbox">
-                                    </div>
-                                    <div class="col-6">
-                                        Daily Exterise Routine
-                                    </div>
-                                    <div class="col-4 text-end ">
-                                        <i class="fa fa-close text-secondary px-3 text-danger "></i>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>12/05/2024</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm rounded-btn">Health</button>
-                                <button class="btn btn-secondary btn-sm rounded-btn">fitness</button>
-                                <button class="btn btn-success btn-sm rounded-btn">default</button>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
 
+        </div>
+
+        <!-- Edit Todo Modal -->
+        <div class="modal" id="editTodoModal">
+            <div class="modal-content">
+                <span class="close" (click)="closeEditModal()">&times;</span>
+                <h2>Edit Todo</h2>
+                <form (submit)="submitEditedTodo()" #form = ngForm>
+                    <label>Title:</label>
+                    <input type="text" [(ngModel)]="editedTodo.title" name="title" required>
+    
+                    <label>Description:</label>
+                    <textarea [(ngModel)]="editedTodo.description" name="description" required></textarea>
+    
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
         </div>
     </div>
     <!-- <app-todo-details [todo]="selectedTodo"></app-todo-details> -->

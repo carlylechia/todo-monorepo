@@ -38,6 +38,25 @@ router.post('/todos', async (req: Request, res: Response) => {
   }
 });
 
+router.patch('/todos/:id/toggleStatus', async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const todo = await TodoModel.findById(id);
+
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+    todo.completed = !todo.completed;
+
+    const updatedTodo = await todo.save();
+
+    res.json(updatedTodo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 router.put('/todos/:id', async (req: Request, res: Response) => {
   try {
     const updatedTodo = await TodoModel.findByIdAndUpdate(
