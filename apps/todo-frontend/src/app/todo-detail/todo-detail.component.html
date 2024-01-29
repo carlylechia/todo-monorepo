@@ -22,7 +22,7 @@
 </head>
   <body>
     <main *ngIf="todo" style="background: aqua; padding: 16px; width: 75vw; height: max-content; margin: 20% auto; font-family: serif; text-align: center; border-radius: 30px;">
-      <h2 style="text-align: center">{{ todo.title }}</h2>
+      <h2 style="text-align: center; text-wrap: wrap; word-break: break-all;">{{ todo.title }}</h2>
       <p>{{ todo.description }}</p>
       <p>Created at: {{ todo.created_at}}</p>
       <p>Updated at: {{ todo.updated_at}}</p>
