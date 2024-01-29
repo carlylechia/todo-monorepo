@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { TodosComponent } from './todos/todos.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, TodosComponent],
   selector: 'todo-monorepo-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

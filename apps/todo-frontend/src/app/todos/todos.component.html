@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Todo App Page</title>
+    <style>
+        .form-control {
+            border: 1px solid black !important;
+        }
+
+        .rounded-btn {
+            border-radius: 20px;
+        }
+    </style>
+    <script>
+        var totitems = [
+            { item: 'Market', tags: ['general', 'market'] },
+            { item: 'Scrum Meeting', tags: ["meeting", "calls"] },
+            { item: 'Interview', tags: ["calls"] }, { item: 'Scrum Ticket', tags: ["work", "defect"] },
+            { item: 'Work On defect', tags: ["defect"] }
+        ];
+        var myString = "work,defect";
+        var arrr = ['defect', 'calls']; 
+        const myArrayFiltered = totitems.filter((el) => {
+            return arrr.some((f) => {
+                return el.tags.includes(f);
+            });
+        }); 
+        console.log(myArrayFiltered);
+        debugger;
+    </script>
+</head>
+
+<body>
+    
+    <div class="container pt-3" (click)="closeModal">
+        <div class="mt-2 p-1 bg-primary text-white rounded text-center">
+            <h1>ToDo App</h1>
+            <p>Built with Angular and Nodejs</p>
+        </div>
+        <form #form=ngForm (submit)="createNewTodo()" style="display: flex; max-width: 100%; overflow-y: hidden; padding-top: 10px; gap: 10px;">
+            <div style="min-width: 60%;">
+                <textarea class="form-control" rows="3" placeholder="Add a description for the task" [(ngModel)]="newTodo.description" name="description" required></textarea>
+            </div>
+            <div style="flex-grow: 1; display: flex; gap: 3px; flex-direction: column; justify-content: space-between; flex-wrap: wrap;">
+                <div style="max-width: max-content;"><input type="date" class="form-control" placeholder="Due Date" disabled></div>
+                <div style="display: flex; max-width: 100%; justify-content: space-between; flex-wrap: wrap; gap: 3px;">
+                    <div><input type="text" placeholder="Enter a title for this task" class="form-control" [(ngModel)]="newTodo.title" name="title" required></div>
+                    <button type="submit" class="btn btn-success btn-sm">Add Task</button>
+                </div>
+            
+            </div>
+        </form>
+        <div class="row pt-4">
+            <div class="col" style="display: flex; gap: 5px;">
+                <button class="btn btn-primary btn-sm">Filter By Tags</button>
+                <button class="btn btn-secondary  btn-sm">Show All</button> 
+                <button class="btn btn-secondary  btn-sm">Show Completed</button> 
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col" style="display: flex; gap: 5px; max-width: 100%; flex-wrap: wrap;">
+                <button class="btn btn-secondary  btn-sm">Hobby </button>
+                <button class="btn btn-success text-light  btn-sm">Financial </button>
+                <button class="btn btn-secondary  btn-sm">Fun </button>
+                <button class="btn btn-success  btn-sm">Emergency </button>
+                <button class="btn btn-secondary  btn-sm text-light">Health </button>
+                <button class="btn btn-secondary  btn-sm">Work</button>
+                <button class="btn btn-secondary  btn-sm">Education</button>
+                <button class="btn btn-secondary  btn-sm">Social</button>
+                <button class="btn btn-secondary  btn-sm">Travel</button>
+
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-12">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th><strong>Index</strong></th>
+                            <th><strong>Task Name</strong></th>
+                            <th class="text-center"><strong>Actions</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let todo of todos" class="todo-item">
+                                <td>{{todos.indexOf(todo) + 1}}</td>
+                        <td><input type="checkbox" [(ngModel)]="todo.completed" name='completed' (change)="updateTodoStatus(todo)" style="margin-right: 13px; cursor: pointer;">
+                        <span [ngClass]="{'completed': todo.completed}"  style="cursor: pointer;" (click)="todo._id && showTodoDetails(todo._id)">{{ todo.title }}</span></td>
+                        <td style="display: flex; gap: 3px;">
+                            <button class="btn btn-primary" (click)="openModal(modalTemplate)">Edit</button>
+                            <button class="btn btn-danger" (click)="todo._id && deleteTodo(todo._id)">Delete</button>
+                        </td>
+                        </tr>
+  
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <ng-template #modalTemplate>
+            <div class="modal" id="editTodoModal">
+                <div class="modal-content">
+                    <span class="close" (click)="closeEditModal()">&times;</span>
+                    <h2>Edit Todo</h2>
+                    <form (submit)="submitEditedTodo()" #form = "ngForm">
+                        <label>Title:</label>
+                        <input type="text" [(ngModel)]="editedTodo.title" name="title" required>
+        
+                        <label>Description:</label>
+                        <textarea [(ngModel)]="editedTodo.description" name="description" required></textarea>
+        
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </ng-template>
+        
+    </div>
+</body>
+
+</html>
