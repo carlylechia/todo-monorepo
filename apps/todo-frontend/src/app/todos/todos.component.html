@@ -22,7 +22,7 @@
             { item: 'Market', tags: ['general', 'market'] },
             { item: 'Scrum Meeting', tags: ["meeting", "calls"] },
             { item: 'Interview', tags: ["calls"] }, { item: 'Scrum Ticket', tags: ["work", "defect"] },
-            { item: 'Wpork On defect', tags: ["defect"] }
+            { item: 'Work On defect', tags: ["defect"] }
         ];
         var myString = "work,defect";
         var arrr = ['defect', 'calls']; 
@@ -41,7 +41,7 @@
     <div class="container pt-3">
         <div class="mt-2 p-1 bg-primary text-white rounded text-center">
             <h1>ToDo App</h1>
-            <p>With A little Extra for your pleasure...</p>
+            <p>Built with Angular and Nodejs</p>
         </div>
         <form #form=ngForm (submit)="createNewTodo()" style="display: flex; max-width: 100%; overflow-y: hidden; padding-top: 10px; gap: 10px;">
             <div style="min-width: 60%;">
@@ -88,10 +88,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let todo of todos" class="todo-item" (click)="showTodoDetails(todo)">
-                                <td>{{todos.indexOf(todo)}}</td>
+                        <tr *ngFor="let todo of todos" class="todo-item" style="cursor: pointer;">
+                                <td>{{todos.indexOf(todo) + 1}}</td>
                         <td><input type="checkbox" [(ngModel)]="todo.completed" name='completed' (change)="updateTodoStatus(todo)" style="margin-right: 13px;">
-                        <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span></td>
+                        <span [ngClass]="{'completed': todo.completed}" (click)="todo._id && showTodoDetails(todo._id)">{{ todo.title }}</span></td>
                         <td style="display: flex; gap: 3px;">
                             <button class="btn btn-primary" (click)="openEditModal(todo)">Edit</button>
                             <button class="btn btn-danger" (click)="todo._id && deleteTodo(todo._id)">Delete</button>
@@ -121,7 +121,6 @@
             </div>
         </div>
     </div>
-    <!-- <app-todo-details [todo]="selectedTodo"></app-todo-details> -->
 </body>
 
 </html>

@@ -5,6 +5,8 @@ import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo.model';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-todos',
@@ -20,7 +22,7 @@ export class TodosComponent  implements OnInit {
   editedTodo: Todo = { title: '', description: '' };
   isEditModalOpen = false;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadTodos();
@@ -79,7 +81,7 @@ export class TodosComponent  implements OnInit {
     });
   }
 
-  showTodoDetails(todo: Todo): void {
-    this.selectedTodo = todo;
+  showTodoDetails(todoId: string): void {
+    this.router.navigate(['/todo', todoId]);
   }
 }
