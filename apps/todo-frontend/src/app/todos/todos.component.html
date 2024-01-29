@@ -43,21 +43,19 @@
             <h1>ToDo App</h1>
             <p>With A little Extra for your pleasure...</p>
         </div>
-        <div style="display: flex; max-width: 100%; overflow-y: hidden; padding-top: 10px; gap: 10px;">
+        <form #form=ngForm (submit)="createNewTodo()" style="display: flex; max-width: 100%; overflow-y: hidden; padding-top: 10px; gap: 10px;">
             <div style="min-width: 60%;">
-                <textarea class="form-control" rows="3" placeholder="Add a new task"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Add a description for the task" [(ngModel)]="newTodo.description" name="description" required></textarea>
             </div>
-        
-        
             <div style="flex-grow: 1; display: flex; gap: 3px; flex-direction: column; justify-content: space-between; flex-wrap: wrap;">
-                <div style="max-width: max-content;"><input type="date" class="form-control" placeholder="Due Date"></div>
+                <div style="max-width: max-content;"><input type="date" class="form-control" placeholder="Due Date" disabled></div>
                 <div style="display: flex; max-width: 100%; justify-content: space-between; flex-wrap: wrap; gap: 3px;">
-                    <div><input type="text" placeholder="Enter Comma Seperated tags" class="form-control"></div>
-                    <button class="btn btn-success btn-sm">Add Task</button>
+                    <div><input type="text" placeholder="Enter a title for this task" class="form-control" [(ngModel)]="newTodo.title" name="title" required></div>
+                    <button type="submit" class="btn btn-success btn-sm">Add Task</button>
                 </div>
             
             </div>
-        </div>
+        </form>
         <div class="row pt-4">
             <div class="col" style="display: flex; gap: 5px;">
                 <button class="btn btn-primary btn-sm">Filter By Tags</button>
@@ -111,7 +109,7 @@
             <div class="modal-content">
                 <span class="close" (click)="closeEditModal()">&times;</span>
                 <h2>Edit Todo</h2>
-                <form (submit)="submitEditedTodo()" #form = ngForm>
+                <form (submit)="submitEditedTodo()" #form = "ngForm">
                     <label>Title:</label>
                     <input type="text" [(ngModel)]="editedTodo.title" name="title" required>
     

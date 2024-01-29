@@ -29,11 +29,19 @@ router.get('/todos/:id', async (req: Request, res: Response) => {
   });
 
 router.post('/todos', async (req: Request, res: Response) => {
+  const { title, description } = req.body;
+
   try {
-    const newTodo = new TodoModel(req.body);
+    const newTodo = new TodoModel({
+      title,
+      description,
+    });
+
     const savedTodo = await newTodo.save();
+
     res.json(savedTodo);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

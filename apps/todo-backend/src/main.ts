@@ -24,6 +24,8 @@ const connectDb = async () => {
 };
 connectDb();
 
+app.use(express.json())
+
 app.use('/api', todoRoutes);
 
 app.use(function(req, res){

@@ -15,6 +15,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 })
 export class TodosComponent  implements OnInit {
   todos: Todo[] = [];
+  newTodo: Todo = { title: '', description: '', completed: false };
   selectedTodo: Todo | null = null;
   editedTodo: Todo = { title: '', description: '' };
   isEditModalOpen = false;
@@ -28,6 +29,13 @@ export class TodosComponent  implements OnInit {
   loadTodos(): void {
     this.todoService.getTodos().subscribe((todos: Todo[]) => {
       this.todos = todos;
+    });
+  }
+
+  createNewTodo(): void {
+    this.todoService.addTodo(this.newTodo).subscribe((createdTodo) => {
+      this.todos.push(createdTodo);
+      this.newTodo = { title: '', description: '', completed: false };
     });
   }
 
