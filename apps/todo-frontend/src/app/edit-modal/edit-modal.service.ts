@@ -9,9 +9,7 @@ import {
 import { Subject } from 'rxjs';
 import { EditModalComponent } from './edit-modal.component';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ModalService {
   private modalNotifier?: Subject<string>;
   constructor(
