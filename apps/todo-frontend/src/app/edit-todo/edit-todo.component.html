@@ -1,0 +1,12 @@
+<div *ngIf="todo" style="margin: auto; background-color: silver; width: fit-content; display: flex; flex-direction: column; padding: 12px;">
+  <h2 style="text-align: center;">Edit Todo</h2>
+  <form style="display: flex; flex-direction: column; gap: 5px;">
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="todo.title" name="title" required>
+
+    <label>Description:</label>
+    <textarea [(ngModel)]="todo.description" name="description" required></textarea>
+
+    <button type="button" (click)="updateTodo()">Update Todo</button>
+  </form>
+</div>
