@@ -18,6 +18,8 @@ Todo Monorepo is a full-stack todo application built using the MEAN stack (Mongo
 
 - **Responsive Design:** Built with responsiveness in mind, ensuring a seamless user experience on various devices.
 
+- **Scalability and Room for improvement:** This project is designed to be very scalable, and can allow for several extra features to be added to it. Because of time, I could not manage to implement all the features i would have loved to, but i fully intend to do that eventually.
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
