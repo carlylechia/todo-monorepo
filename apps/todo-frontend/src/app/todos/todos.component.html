@@ -38,7 +38,7 @@
 
 <body>
     
-    <div class="container pt-3" (click)="closeModal">
+    <div class="container pt-3">
         <div class="mt-2 p-1 bg-primary text-white rounded text-center">
             <h1>ToDo App</h1>
             <p>Built with Angular and Nodejs</p>
@@ -93,7 +93,8 @@
                         <td><input type="checkbox" [(ngModel)]="todo.completed" name='completed' (change)="updateTodoStatus(todo)" style="margin-right: 13px; cursor: pointer;">
                         <span [ngClass]="{'completed': todo.completed}"  style="cursor: pointer;" (click)="todo._id && showTodoDetails(todo._id)">{{ todo.title }}</span></td>
                         <td style="display: flex; gap: 3px;">
-                            <button class="btn btn-primary" (click)="openModal(modalTemplate)">Edit</button>
+                            <button class="btn btn-primary"><a  class="btn-sm btn-primary rounded-btn" style="background-color: rgb(24, 96, 212); color: aliceblue; text-decoration: none; padding: 3px 7px;" routerLink="/todo/{{ todo._id }}/edit">Edit</a></button>
+                            
                             <button class="btn btn-danger" (click)="todo._id && deleteTodo(todo._id)">Delete</button>
                         </td>
                         </tr>
@@ -103,24 +104,6 @@
             </div>
 
         </div>
-
-        <ng-template #modalTemplate>
-            <div class="modal" id="editTodoModal">
-                <div class="modal-content">
-                    <span class="close" (click)="closeEditModal()">&times;</span>
-                    <h2>Edit Todo</h2>
-                    <form (submit)="submitEditedTodo()" #form = "ngForm">
-                        <label>Title:</label>
-                        <input type="text" [(ngModel)]="editedTodo.title" name="title" required>
-        
-                        <label>Description:</label>
-                        <textarea [(ngModel)]="editedTodo.description" name="description" required></textarea>
-        
-                        <button type="submit">Save Changes</button>
-                    </form>
-                </div>
-            </div>
-        </ng-template>
         
     </div>
 </body>
